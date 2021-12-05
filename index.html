@@ -26,7 +26,7 @@
   <div class="container-fluid">
     <div class="card text-white bg-black mb-3" style="max-width: 95rem; height:95vh">
       <div class="row container-fluid" style="height:95vh">
-        <div class="col-6 col-md-2" style="margin-right:2em;">
+        <div class="col-6 col-md-2">
           <div class="col-10" id="scrollspy" style="margin:2em">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -62,37 +62,76 @@
         </div>
         <div class="card col-md-9 img-fluid" id="wrapper-bg"
           style="background-image: url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif'); background-size: cover; height:90vh; margin:auto 2.5em">
-          <div data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="0" class="scrollspy-example"
-            style="height:100vh; margin:2em auto ">
+          <div data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="0" class="scrollspy-example d-flex flex-column" style="height:100vh; margin:2em auto ">
             <section id="dash">
               <!-- Top content -->
               <div class="top-content">
                 <div class="container-fluid">
                   <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active citycard">
-                        <img src="assets/img/backgrounds/1.jpg" class="img-fluid mx-auto d-block" alt="img1">
+                    <div class="carousel-inner row w-100 mx-auto" role="listbox" style = "position:relative; left:6.5em;">
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dG9reW98ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Tokyo</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block img-thumbnail cityimg" alt="img2"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.281);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">New York</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8a29sa2F0YXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img3"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.247);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Kolkata</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1559407011-0df8dd5991d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fE1vbnRyZWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img4"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.404);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Montreal</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1599655094604-124d6d7d4af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fERoYWthfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img5"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.116);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Dhaka</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard ripple">
+                        <img src="https://images.unsplash.com/photo-1609255797817-0111375bf4d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fEJlaWppbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img6"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.116);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Beijing</p>
+                          </div>
+                        </div>
                       </div>
                       <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/2.jpg" class="img-fluid mx-auto d-block" alt="img2">
+                        <img src="https://images.unsplash.com/photo-1562679299-266edbefd6d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fENhaXJvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img7"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.192);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Cairo</p>
+                          </div>
+                        </div>
                       </div>
                       <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/3.jpg" class="img-fluid mx-auto d-block" alt="img3">
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/4.jpg" class="img-fluid mx-auto d-block" alt="img4">
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/5.jpg" class="img-fluid mx-auto d-block" alt="img5">
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/6.jpg" class="img-fluid mx-auto d-block" alt="img6">
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/7.jpg" class="img-fluid mx-auto d-block" alt="img7">
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img src="assets/img/backgrounds/8.jpg" class="img-fluid mx-auto d-block" alt="img8">
+                        <img src="https://images.unsplash.com/photo-1568625455600-7b95a06a1125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fExvcyUyMEFuZ2VsZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60" class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img8"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.329);">
+                          <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">Los Angeles</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
