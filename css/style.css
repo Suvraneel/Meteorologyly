@@ -48,8 +48,8 @@ a .active{
 .citycard {
     border: 0;
     height: 18vh;
-    width: 10vw;
-    -webkit-box-shadow: 0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.05);
+    width: 11vw;
+    -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0),0 4px 6px -2px rgba(0,0,0,.05);
     box-shadow: 0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.05);
 }
 
@@ -58,4 +58,8 @@ a .active{
   height: 100%;
   background: no-repeat center;
   background-size: cover;
+}
+
+.carousel-item img{
+  filter: brightness(80%);
 }
