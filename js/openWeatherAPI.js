@@ -61,20 +61,19 @@ function searchByCity() {
 
 }
 
-// function featuredCity() {
-//     searchCity = document.getElementById('search-input').value;
-//     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}`).then(res => res.json()).then(data => {
-//         console.log(data)
-//         let latitude = data.coord.lat;
-//         let longitude = data.coord.lon;
-//         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+function featuredCity(carouselCity) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${carouselCity}&appid=${API_KEY}`).then(res => res.json()).then(data => {
+        console.log(data)
+        let latitude = data.coord.lat;
+        let longitude = data.coord.lon;
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
 
-//             console.log(data)
-//             showWeatherData(data);
-//         })
-//     })
+            console.log(data)
+            showWeatherData(data);
+        })
+    })
 
-// }
+}
 
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
