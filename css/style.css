@@ -87,7 +87,7 @@ a .active{
   margin: 2px;
   border-style: double;
   border-color:rgba(255, 255, 255, 0.301);
-  background-color: rgba(0, 0, 0, 0.418);
+  background-color: rgba(27, 25, 25, 0.575);
 }
 
 #today-card{

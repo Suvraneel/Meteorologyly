@@ -7,7 +7,7 @@ const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
 var searchCity = "";
-
+var main = "";
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -77,6 +77,41 @@ function featuredCity(carouselCity) {
 
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
+
+    main = data.current.weather[0].main;
+    // Backgrounds
+    switch (main) {
+        case "Snow":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('../img/gifs/snow.gif')";
+          break;
+        case "Clouds":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
+          break;
+        case "Fog":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('../img/gifs/fog.gif')";
+          break;
+        case "Rain":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('../img/gifs/rain.gif')";
+          break;
+        case "Clear":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('../img/gifs/clear.gif')";
+          break;
+        case "Thunderstorm":
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('https://mdbgo.io/ascensus/mdb-advanced/img/thunderstorm.gif')";
+          break;
+        default:
+          document.getElementById("wrapper-bg").style.backgroundImage =
+            "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
+          break;
+      }
+
+
 
     timezone.innerHTML = data.timezone;
     timezonehead.innerHTML = data.timezone;
