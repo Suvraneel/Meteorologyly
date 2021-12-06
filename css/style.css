@@ -1,11 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@200;300;400&display=swap");
 
-#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-  #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
-  #section41 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
-  #section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+body{
+  font-family: Raleway, Playfair Display, sans-serif;
+}
 
-  /* Styles required only for the example above */
+/* Styles required only for the example above */
 .scrollspy-example {
     position: relative;
     height: 200px;
@@ -17,7 +16,8 @@
     font-size: 1rem;
     line-height: 2.5rem;
     color: inherit;
-    opacity: 0.8; }
+    opacity: 0.8;
+  }
   
   .header-social .nav-link {
     font-size: 1.25rem; }
@@ -26,9 +26,17 @@
   .nav-link:focus {
     color: cyan;
     opacity: 1; }
-  
+
   .nav-item + .nav-item {
-    margin-left: 1rem; }
+    margin-left: 1rem;
+  }
+
+  #scrollspy .active {
+      color: rgb(0, 247, 255) !important;
+      background-color: rgba(68, 218, 223, 0.212);
+      border-radius: 3px;
+      padding-left: 0.5em;
+  }
 
 a .active{
     color:red;
