@@ -76,11 +76,11 @@
                     </div>
                   </div>
                 </div>
-                <br/>
+                <br />
                 <div class="others" id="current-weather-items">
                 </div>
               </div>
-            
+
               <div class="place-container">
                 <div class="time-zone h6" id="time-zone">Asia/Kolkata</div>
                 <div id="country" class="country small">IN</div>
@@ -93,7 +93,19 @@
           <div data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="0"
             class="scrollspy-example d-flex flex-column" style="height:100vh; ">
             <section id="dash">
-              <h3 class="white-text" style="margin-left:4.5em;">Weather Forecast</h3><br />
+              <div class="d-flex justify-content-between">
+                <h3 class="white-text" style="margin-left:4.5em;">Weather Forecast</h3>
+                <div class="d-flex justify-content-end text-white" style="margin-right:9em">
+                  <div class="form-outline">
+                    <input id="search-input" type="search" class="form-control" />
+                    <label class="form-label text-white" for="city-search">Search</label>
+                  </div>
+                  <button id="search-button" type="button" class="btn btn-primary" onclick="searchByCity()">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <br />
               <!-- Top content -->
               <div class="top-content">
                 <div class="container-fluid" style="overflow-x: hidden;">
@@ -192,13 +204,16 @@
                 </div>
               </div>
             </section>
-            <br />
-            <section id="daily-forecast" class="container-fluid row d-flex flex-row" style="margin-left:6em; width:55vw">
-              <div class="time-zone white-text h3" id="time-zone"><br/>Asia/Kolkata</div>
+            
+            <section id="daily-forecast" class="container-fluid row d-flex flex-row"
+              style="margin-left:6em; width:55vw">
+              <p><!-- Just for Alignment ... DONT DELETE ! --></p>
+              <div class="time-zone white-text h3" id="time-zone-header">Asia/Kolkata</div>
               <!-- Daily forecast -->
               <div class="card-body p-4 border-top border-bottom mb-2  d-flex flex-row">
                 <div class="row text-center future-forecast">
-                  <div class="today d-flex flex-direction-row justify-content-xl-between" id="current-temp" style="padding-right:2em">
+                  <div class="today d-flex flex-direction-row justify-content-xl-between" id="current-temp"
+                    style="padding-right:2em">
                     <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
                     <div class="other">
                       <div class="day">Monday</div>
@@ -207,48 +222,48 @@
                     </div>
                   </div>
                   <div class="weather-forecast d-flex small" id="weather-forecast">
-                  <div class="weather-forecast-item">
-                    <div class="day">Tue</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Wed</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Thur</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Fri</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Sat</div>
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
+                    <div class="weather-forecast-item">
+                      <div class="day">Tue</div>
+                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
+                    <div class="weather-forecast-item">
+                      <div class="day">Wed</div>
+                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
+                    <div class="weather-forecast-item">
+                      <div class="day">Thur</div>
+                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
+                    <div class="weather-forecast-item">
+                      <div class="day">Fri</div>
+                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
+                    <div class="weather-forecast-item">
+                      <div class="day">Sat</div>
+                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            
-            
+
+
             </section>
             <section id="stat" class="container-fluid row" style="margin-left:6em; width:55vw">
               <h3 class="white-text"><br />Weather Graph<br /><br /></h3>
               ...
               <section id="example-sub-A">
                 <h3>Subsection A</h3>
-                
+
               </section>
               <section id="example-sub-B">
                 <h3>Subsection B</h3>
@@ -279,8 +294,10 @@
   <script src="./js/jquery.backstretch.min.js"></script>
   <script src="./js/wow.min.js"></script>
   <script src="./js/scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script src="./js/openWeatherAPI.js"></script>
 </body>
 

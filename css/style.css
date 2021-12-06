@@ -102,3 +102,13 @@ a .active{
 #today-card .today{
   height: 6em;
 }
+
+.form-outline{
+  background-color: rgba(0, 0, 0, 0.452);
+  border-color:rgba(255, 255, 255, 0.39);
+  border-style: ridge;
+}
+
+.form-outline .active, .btn:hover {
+	color: rgb(0, 247, 255);
+}

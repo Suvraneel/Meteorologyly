@@ -2,9 +2,11 @@ const timeEl = document.getElementById('time');
 const dateEl = document.getElementById('date');
 const currentWeatherItemsEl = document.getElementById('current-weather-items');
 const timezone = document.getElementById('time-zone');
+const timezonehead = document.getElementById('time-zone-header');
 const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
+var searchCity = "";
 
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -44,10 +46,41 @@ function getWeatherData () {
     })
 }
 
+function searchByCity() {
+    searchCity = document.getElementById('search-input').value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}`).then(res => res.json()).then(data => {
+        console.log(data)
+        let latitude = data.coord.lat;
+        let longitude = data.coord.lon;
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+
+            console.log(data)
+            showWeatherData(data);
+        })
+    })
+
+}
+
+// function featuredCity() {
+//     searchCity = document.getElementById('search-input').value;
+//     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}`).then(res => res.json()).then(data => {
+//         console.log(data)
+//         let latitude = data.coord.lat;
+//         let longitude = data.coord.lon;
+//         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+
+//             console.log(data)
+//             showWeatherData(data);
+//         })
+//     })
+
+// }
+
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
 
     timezone.innerHTML = data.timezone;
+    timezonehead.innerHTML = data.timezone;
     countryEl.innerHTML = data.lat + 'N ' + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + data.lon+'E'
 
     currentWeatherItemsEl.innerHTML = 
