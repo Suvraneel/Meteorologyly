@@ -63,3 +63,34 @@ a .active{
 .carousel-item img{
   filter: brightness(80%);
 }
+
+#current-temp{
+  height: 7em;
+  border-radius: 2px;
+  margin-left: 0.8em;
+  width: 20.5em;
+  border-style: double;
+  border-color:rgba(255, 255, 255, 0.301);
+  background-color: rgba(0, 0, 0, 0.418);
+}
+
+.weather-forecast-item{
+  border-radius: 2px;
+  margin: 2px;
+  border-style: double;
+  border-color:rgba(255, 255, 255, 0.301);
+  background-color: rgba(0, 0, 0, 0.418);
+}
+
+#today-card{
+  background-color:#0e6b6e6e;
+  border-radius: 4px;
+  border-style: double;
+  margin: 4em 0 5em -2em;
+  padding: 0.5em 1em 0.5em 1em;
+  width: 150%;
+}
+
+#today-card .today{
+  height: 6em;
+}

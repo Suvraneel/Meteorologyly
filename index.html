@@ -58,17 +58,41 @@
                 </a>
               </li>
             </ul>
+
+            <div id="today-card" class="">
+              <div class="date-container">
+                <div class="today d-flex">
+                  <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                  <div class="d-flex flex-column">
+                    <div class="time h4" id="time">
+                      12:30 <span id="am-pm">PM</span>
+                    </div>
+                    <div class="date h5" id="date">
+                      Monday, 25 May
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div class="others" id="current-weather-items">
+                </div>
+              </div>
+            
+              <div class="place-container">
+                <div class="time-zone h6" id="time-zone">Asia/Kolkata</div>
+                <div id="country" class="country small">IN</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card col-md-9 img-fluid" id="wrapper-bg"
-          style="background-image: url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif'); background-size: cover; height:90vh; width:80%; padding-top:2em">
+          style="background-image: url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif'); background-size: cover; height:90vh; width:80%; padding-top:2em; position:relative; left:3em">
           <div data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="0"
             class="scrollspy-example d-flex flex-column" style="height:100vh; ">
             <section id="dash">
               <h3 class="white-text" style="margin-left:4.5em;">Weather Forecast</h3><br />
               <!-- Top content -->
               <div class="top-content">
-                <div class="container-fluid">
+                <div class="container-fluid" style="overflow-x: hidden;">
                   <div id="carousel-example" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner row w-100 mx-auto" role="listbox" style="position:relative; left:6em;">
                       <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active citycard ripple">
@@ -165,61 +189,65 @@
               </div>
             </section>
             <br />
-            <section id="hourly-forecast" class="container-fluid row" style="margin-left:6em; width:55vw">
-              <h3 class="white-text"><br />London<br /><br /></h3>
-              <!-- Hourly forecast -->
-              <div class="card-body p-4 border-top border-bottom mb-2">
-                <div class="row text-center">
-                  <div class="col-2">
-                    <strong class="d-block mb-2">Now</strong>
-                    <img id="wrapper-icon-hour-now" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour-now"></strong>
+            <section id="daily-forecast" class="container-fluid row d-flex flex-row" style="margin-left:6em; width:55vw">
+              <div class="time-zone white-text h3" id="time-zone"><br/>Asia/Kolkata</div>
+              <!-- Daily forecast -->
+              <div class="card-body p-4 border-top border-bottom mb-2  d-flex flex-row">
+                <div class="row text-center future-forecast">
+                  <div class="today d-flex flex-direction-row justify-content-xl-between" id="current-temp" style="padding-right:2em">
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="other">
+                      <div class="day">Monday</div>
+                      <div class="temp">Night - 25.6&#176; C</div>
+                      <div class="temp">Day - 35.6&#176; C</div>
+                    </div>
                   </div>
-
-                  <div class="col-2">
-                    <strong class="d-block mb-2" id="wrapper-time1"></strong>
-                    <img id="wrapper-icon-hour1" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour1"></strong>
+                  <div class="weather-forecast d-flex small" id="weather-forecast">
+                  <div class="weather-forecast-item">
+                    <div class="day">Tue</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
                   </div>
-
-                  <div class="col-2">
-                    <strong class="d-block mb-2" id="wrapper-time2"></strong>
-                    <img id="wrapper-icon-hour2" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour2"></strong>
+                  <div class="weather-forecast-item">
+                    <div class="day">Wed</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
                   </div>
-
-                  <div class="col-2">
-                    <strong class="d-block mb-2" id="wrapper-time3"></strong>
-                    <img id="wrapper-icon-hour3" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour3"></strong>
+                  <div class="weather-forecast-item">
+                    <div class="day">Thur</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
                   </div>
-
-                  <div class="col-2">
-                    <strong class="d-block mb-2" id="wrapper-time4"></strong>
-                    <img id="wrapper-icon-hour4" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour4"></strong>
+                  <div class="weather-forecast-item">
+                    <div class="day">Fri</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
                   </div>
-
-                  <div class="col-2">
-                    <strong class="d-block mb-2" id="wrapper-time5"></strong>
-                    <img id="wrapper-icon-hour5" src="" class="" alt="" />
-                    <strong class="d-block" id="wrapper-hour5"></strong>
+                  <div class="weather-forecast-item">
+                    <div class="day">Sat</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
+                  </div>
                   </div>
                 </div>
               </div>
-
-
+            
+            
             </section>
             <section id="stat" class="container-fluid row" style="margin-left:6em; width:55vw">
               <h3 class="white-text"><br />Weather Graph<br /><br /></h3>
               ...
               <section id="example-sub-A">
                 <h3>Subsection A</h3>
-                ...
+                
               </section>
               <section id="example-sub-B">
                 <h3>Subsection B</h3>
-                ...
               </section>
             </section>
             <section id="example-4">
@@ -247,6 +275,9 @@
   <script src="./js/jquery.backstretch.min.js"></script>
   <script src="./js/wow.min.js"></script>
   <script src="./js/scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+  <script src="./js/openWeatherAPI.js"></script>
 </body>
 
 </html>
