@@ -83,7 +83,7 @@ function showWeatherData (data){
     switch (main) {
         case "Snow":
           document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('../img/gifs/snow.gif')";
+            "url('img/gifs/snow.gif')";
           break;
         case "Clouds":
           document.getElementById("wrapper-bg").style.backgroundImage =
@@ -91,15 +91,15 @@ function showWeatherData (data){
           break;
         case "Fog":
           document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('../img/gifs/fog.gif')";
+            "url('img/gifs/fog.gif')";
           break;
         case "Rain":
           document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('../img/gifs/rain.gif')";
+            "url('img/gifs/rain.gif')";
           break;
         case "Clear":
           document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('../img/gifs/clear.gif')";
+            "url('img/gifs/clear.gif')";
           break;
         case "Thunderstorm":
           document.getElementById("wrapper-bg").style.backgroundImage =
