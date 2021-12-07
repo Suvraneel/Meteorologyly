@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="./css/media-queries.css">
   <link rel="stylesheet" href="./css/carousel.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -303,24 +304,19 @@
                   </div>
                 </div>
               </div>
-
-
             </section>
+
+
             <section id="stat" class="container-fluid row" style="margin-left:6em; width:55vw">
               <h3 class="white-text"><br />Weather Graph<br /><br /></h3>
-              ...
-              <section id="example-sub-A">
-                <h3>Subsection A</h3>
-
-              </section>
-              <section id="example-sub-B">
-                <h3>Subsection B</h3>
-              </section>
+              <canvas id="myChart" width="300" height="200"></canvas>
+      
             </section>
-            <section id="example-4">
-              <h3>Section 4</h3>
-              ...
-            </section>
+            <!-- <section id="map" class="container-fluid row d-flex flex-row" style="margin-left:6em; width:55vw"> -->
+              <p><!-- Just for Alignment ... DONT DELETE ! --><br/></p>
+              <!-- <div class="white-text h3" id="locationMap">Map</div>
+              <iframe id="mapIframe" style="filter: invert(100%)" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;ll=22.5522616,88.3918931&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" frameborder="0" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"><a href="https://www.gps.ie/car-satnav-gps/">car gps</a></iframe>
+            </section> -->
           </div>
         </div>
       </div>
@@ -347,6 +343,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script src="./js/openWeatherAPI.js"></script>
+  <script src="./js/weatherGraph.js"></script>
+  <script src="./js/mapUpdate.js"></script>
 </body>
 
 </html>

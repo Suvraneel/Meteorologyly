@@ -33,7 +33,7 @@ body{
 
   #scrollspy .active {
       color: rgb(0, 247, 255) !important;
-      background-color: rgba(68, 218, 223, 0.212);
+      background-color: rgba(68, 218, 223, 0.200);
       border-radius: 3px;
       padding-left: 0.5em;
   }
@@ -111,4 +111,8 @@ a .active{
 
 .form-outline .active, .btn:hover {
 	color: rgb(0, 247, 255);
+}
+
+#myChart{
+  background-color : rgba(0, 0, 0, 0.658);
 }

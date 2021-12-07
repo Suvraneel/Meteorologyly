@@ -41,6 +41,8 @@ function getWeatherData () {
 
         console.log(data)
         showWeatherData(data);
+        getGraphData(data);
+        mapUpdateIframe(latitude, longitude);
         })
 
     })
@@ -56,6 +58,8 @@ function searchByCity() {
 
             console.log(data)
             showWeatherData(data);
+            getGraphData(data);
+            mapUpdateIframe(latitude, longitude);
         })
     })
 
@@ -70,6 +74,8 @@ function featuredCity(carouselCity) {
 
             console.log(data)
             showWeatherData(data);
+            getGraphData(data);
+            mapUpdateIframe(latitude, longitude);
         })
     })
 
@@ -77,7 +83,6 @@ function featuredCity(carouselCity) {
 
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
-
     main = data.current.weather[0].main;
     // Backgrounds
     switch (main) {
