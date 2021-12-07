@@ -114,5 +114,5 @@ a .active{
 }
 
 #myChart{
-  background-color : rgba(0, 0, 0, 0.658);
+  background-color : rgba(0, 0, 0, 0.658) !important;
 }
