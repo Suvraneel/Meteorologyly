@@ -1,7 +1,8 @@
-/* const mapIfrm = document.getElementById('mapIframe');
-function mapUpdateIframe(latitude, longitude) {
+const mapIfrm = document.getElementById('mapIframe');
+function mapUpdateIframe(city) {
     mapIfrm.innerHTML = 
-    `<iframe id="mapIframe" style="filter: invert(100%)" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;ll=${latitude},${longitude}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" frameborder="0" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"><a href="https://www.gps.ie/car-satnav-gps/">car gps</a></iframe>
+    `<iframe id="mapIframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPPopCJHxOtwtsGokOpoKNRnWCq4XRH-k&q=${city}" width="100%" height="600" style="filter: invert(100%)"></iframe>
     `;
-    console.log(latitude, longitude);
-} */
+    // console.log(latitude, longitude);
+    console.log(mapIfrm.innerHTML);
+}

@@ -42,9 +42,8 @@ function getWeatherData () {
         console.log(data)
         showWeatherData(data);
         getGraphData(data);
-        mapUpdateIframe(latitude, longitude);
+        mapUpdateIframe(data.timezone.split('/')[1]);
         })
-
     })
 }
 
@@ -59,7 +58,7 @@ function searchByCity() {
             console.log(data)
             showWeatherData(data);
             getGraphData(data);
-            mapUpdateIframe(latitude, longitude);
+            mapUpdateIframe(searchCity);
         })
     })
 
@@ -75,7 +74,7 @@ function featuredCity(carouselCity) {
             console.log(data)
             showWeatherData(data);
             getGraphData(data);
-            mapUpdateIframe(latitude, longitude);
+            mapUpdateIframe(carouselCity);
         })
     })
 
