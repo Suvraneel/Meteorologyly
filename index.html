@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <script src="https://kit.fontawesome.com/4e544dfbd7.js" crossorigin="anonymous"></script>
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
   <!-- MDB -->
@@ -32,32 +32,38 @@
         <div class="col-6 col-md-2">
           <div class="col-10" id="scrollspy" style="margin:2em">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <h3 class="card-title"> Meteorologyly</h5>
+              <li class="nav-item d-flex justify-content-between">
+                <img width="32px" height="32px" src="./img/favicon/favicon-32x32.png"/> 
+                <h3 class="card-title"> Meteorologyly</h3>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#dash">
-                  Dashboard
+                  <i class="fa-solid fa-border-all"></i>
+                  <span> &nbsp; Dashboard</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#stat">
-                  Statistics
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span> &nbsp; Statistics</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#map">
-                  Map
+                  <i class="fa-solid fa-map-location-dot"></i>
+                  <span> &nbsp; Map</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#cal">
-                  Calendar
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span> &nbsp; Calendar</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#sett" tabindex="-1" aria-disabled="true">
-                  Settings
+                  <i class="fa-solid fa-gear"></i>
+                  <span> &nbsp; Settings</span>
                 </a>
               </li>
             </ul>
@@ -255,52 +261,18 @@
             </section>
             
             <section id="daily-forecast" class="container-fluid row d-flex flex-row"
-              style="margin-left:6em; width:55vw">
+              style="margin-left:3em; width:65vw">
               <p><!-- Just for Alignment ... DONT DELETE ! --></p>
-              <div class="time-zone white-text h3" id="time-zone-header">Asia/Kolkata</div>
+              <div class="time-zone white-text h3" id="time-zone-header" style="margin-left: 1.75em;">Asia/Kolkata</div>
               <!-- Daily forecast -->
               <div class="card-body p-4 border-top border-bottom mb-2  d-flex flex-row">
                 <div class="row text-center future-forecast">
-                  <div class="today d-flex flex-direction-row justify-content-xl-between" id="current-temp"
-                    style="padding-right:2em">
-                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                    <div class="other">
-                      <div class="day">Monday</div>
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
-                  </div>
                   <div class="weather-forecast d-flex small" id="weather-forecast">
-                    <div class="weather-forecast-item">
-                      <div class="day">Tue</div>
-                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
-                    <div class="weather-forecast-item">
-                      <div class="day">Wed</div>
-                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
-                    <div class="weather-forecast-item">
-                      <div class="day">Thur</div>
-                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
-                    <div class="weather-forecast-item">
-                      <div class="day">Fri</div>
-                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
-                    <div class="weather-forecast-item">
-                      <div class="day">Sat</div>
-                      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-                      <div class="temp">Night - 25.6&#176; C</div>
-                      <div class="temp">Day - 35.6&#176; C</div>
-                    </div>
+                    <div class="weather-forecast-item"></div>
+                    <div class="weather-forecast-item"></div>
+                    <div class="weather-forecast-item"></div>
+                    <div class="weather-forecast-item"></div>
+                    <div class="weather-forecast-item"></div>
                   </div>
                 </div>
               </div>

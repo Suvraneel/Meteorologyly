@@ -148,27 +148,14 @@ function showWeatherData (data){
 
     let otherDayForcast = ''
     data.daily.forEach((day, idx) => {
-        if(idx == 0){
-            currentTempEl.innerHTML = `
-            <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
-            <div class="other small"><br/>
-                <div class="day h5">${window.moment(day.dt*1000).format('dddd')}</div>
-                <div class="temp">Night - ${day.temp.night}&#176;C</div>
-                <div class="temp">Day - ${day.temp.day}&#176;C</div>
-            </div>
-            
-            `
-        }else{
             otherDayForcast += `
             <div class="weather-forecast-item">
                 <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
                 <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - ${day.temp.night}&#176;C</div>
-                <div class="temp">Day - ${day.temp.day}&#176;C</div>
+                <div class="temp">${day.temp.min}&#176;C/${day.temp.max}&#176;C</div>
             </div>
             
             `
-        }
     })
 
 
