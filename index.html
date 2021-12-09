@@ -18,9 +18,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
   <!-- MDB -->
   <link rel="stylesheet" href="css/mdb.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="./css/media-queries.css">
-  <link rel="stylesheet" href="./css/carousel.css">
+  <link rel="stylesheet" href="./css/hoverCarousel.css">
+  <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
 </head>
 
@@ -28,12 +28,12 @@
   <!-- Start your project here-->
   <div class="container-fluid">
     <div class="card text-white bg-black mb-3" style="max-width: 95rem; height:95vh">
-      <div class="row container-fluid" style="height:95vh">
-        <div class="col-6 col-md-2">
-          <div class="col-10" id="scrollspy" style="margin:2em">
-            <ul class="nav flex-column">
+      <div class="row container-fluid d-flex justify-content-around" style="height:95vh;">
+        <div class="col-6 col-md-2 d-flex flex-column justify-content-start">
+          <div class="col-10" id="scrollspy">
+            <ul class="nav d-flex flex-column">
               <li class="nav-item d-flex justify-content-between">
-                <img width="32px" height="32px" src="./img/favicon/favicon-32x32.png"/> 
+                <img width="32px" height="32px" src="./img/favicon/favicon-32x32.png" />
                 <h3 class="card-title"> Meteorologyly</h3>
               </li>
               <li class="nav-item">
@@ -67,40 +67,34 @@
                 </a>
               </li>
             </ul>
-
+            <p></p>
             <div id="today-card" class="">
               <div class="date-container">
                 <div class="today d-flex">
                   <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
                   <div class="d-flex flex-column">
-                    <div class="time h4" id="time">
+                    <div class="h5">Today</div>
+                    <div class="time h6" id="time">
                       12:30 <span id="am-pm">PM</span>
                     </div>
-                    <div class="date h5" id="date">
+                    <div class="date small" id="date">
                       Monday, 25 May
                     </div>
                   </div>
                 </div>
-                <br />
                 <div class="others" id="current-weather-items">
                 </div>
-              </div>
-
-              <div class="place-container">
-                <div class="time-zone h6" id="time-zone">Asia/Kolkata</div>
-                <div id="country" class="country small">IN</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="card col-md-9 img-fluid bg-dark" id="wrapper-bg"
-          style="background-size: cover; height:90vh; width:80%; padding-top:2em; position:relative; left:3em">
+        <div class="card col-md-9 img-fluid bg-dark d-flex flex-column" id="wrapper-bg"
+          style="background-size: cover; height:90vh;">
           <div data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="0"
             class="scrollspy-example d-flex flex-column" style="height:100vh; ">
             <section id="dash">
-              <div class="d-flex justify-content-between">
-                <h3 class="white-text" style="margin-left:4.5em;">Weather Forecast</h3>
-                <div class="d-flex justify-content-end text-white" style="margin-right:9em">
+              <ul class="d-flex justify-content-between top-nav">
+                <li class="d-flex justify-content-end text-white">
                   <div class="form-outline">
                     <input id="search-input" type="search" class="form-control" />
                     <label class="form-label text-white" for="city-search">Search</label>
@@ -108,189 +102,164 @@
                   <button id="search-button" type="button" class="btn btn-primary" onclick="searchByCity()">
                     <i class="fas fa-search"></i>
                   </button>
-                </div>
-              </div>
+                </li>
+                <!-- Authentication to be implemented -->
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow form-outline">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-bell"></i>
+                    &nbsp;&nbsp;&nbsp;
+                    <img class="img-profile rounded-circle" height="40" width="40" src="./img/boy.png">
+                    <span class="small">William Jacobson</span>
+                  </a>
+                </li>
+              </ul>
               <br />
               <!-- Top content -->
               <div class="top-content">
-                <div class="container-fluid" style="overflow-x: hidden;">
-                  <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner row w-100 mx-auto" role="listbox" style="position:relative; left:6em;">
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1558551649-e44c8f992010?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW1zdGVyZGFtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Amsterdam')">
-                            <p class="text-white mb-0">Amsterdam</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bG9uZG9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('London')">
-                            <p class="text-white mb-0">London</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1610752400564-c97cbbb5cfba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJ1ZGFwZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Budapest')">
-                            <p class="text-white mb-0">Budapest</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGFyaXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Paris')">
-                            <p class="text-white mb-0">Paris</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpY2Fnb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Chicago')">
-                            <p class="text-white mb-0">Chicago</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dG9reW98ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img1" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Tokyo')">
-                            <p class="text-white mb-0">Tokyo</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block img-thumbnail cityimg" alt="img2" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('New York')">
-                            <p class="text-white mb-0">New York</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8a29sa2F0YXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img3" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Kolkata')">
-                            <p class="text-white mb-0">Kolkata</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1559407011-0df8dd5991d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fE1vbnRyZWFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img4" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Montreal')">
-                            <p class="text-white mb-0">Montreal</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1599655094604-124d6d7d4af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fERoYWthfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img5" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Dhaka')">
-                            <p class="text-white mb-0">Dhaka</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1609255797817-0111375bf4d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fEJlaWppbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img6" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Beijing')">
-                            <p class="text-white mb-0">Beijing</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1562679299-266edbefd6d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fENhaXJvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img7" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Cairo')">
-                            <p class="text-white mb-0">Cairo</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 citycard">
-                        <img
-                          src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8TG9zJTIwQW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                          class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="img8" />
-                        <div class="mask">
-                          <div class="d-flex justify-content-center align-items-center h-100 ripple" onclick="featuredCity('Los Angeles')">
-                            <p class="text-white mb-0">Los Angeles</p>
-                          </div>
-                        </div>
+                <div class="container-fluid" style="overflow: hidden;">
+                  <div class="row">
+                    <h3 class="text-white">Weather Forecast</h3>
+                    <div class="carousel">
+                      <div class="wrap">
+                        <ul>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Amsterdam')">
+                              <img
+                                src="https://images.unsplash.com/photo-1558551649-e44c8f992010?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW1zdGVyZGFtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Amsterdam" />
+                              <p class="text-white mb-0 centered">Amsterdam</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('London')">
+                              <img
+                                src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bG9uZG9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="London" />
+                              <p class="text-white mb-0 centered">London</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Budapest')">
+                              <img
+                                src="https://images.unsplash.com/photo-1610752400564-c97cbbb5cfba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJ1ZGFwZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Budapest" />
+                              <p class="text-white mb-0 centered">Budapest</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Paris')">
+                              <img
+                                src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGFyaXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Paris" />
+                              <p class="text-white mb-0 centered">Paris</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Chicago')">
+                              <img
+                                src="https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpY2Fnb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Chicago" />
+                              <p class="text-white mb-0 centered">Chicago</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Tokyo')">
+                              <img
+                                src="https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dG9reW98ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Tokyo" />
+                              <p class="text-white mb-0 centered">Tokyo</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('New York')">
+                              <img
+                                src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="New York" />
+                              <p class="text-white mb-0 centered">New York</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Kolkata')">
+                              <img
+                                src="https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8a29sa2F0YXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Kolkata" />
+                              <p class="text-white mb-0 centered">Kolkata</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Dhaka')">
+                              <img
+                                src="https://images.unsplash.com/photo-1599655094604-124d6d7d4af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fERoYWthfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Dhaka" />
+                              <p class="text-white mb-0 centered">Dhaka</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Beijing')">
+                              <img
+                                src="https://images.unsplash.com/photo-1609255797817-0111375bf4d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fEJlaWppbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Beijing" />
+                              <p class="text-white mb-0 centered">Beijing</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Cairo')">
+                              <img
+                                src="https://images.unsplash.com/photo-1562679299-266edbefd6d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fENhaXJvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Cairo" />
+                              <p class="text-white mb-0 centered">Cairo</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="citycard h-100 ripple" onclick="featuredCity('Los Angeles')">
+                              <img
+                                src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8TG9zJTIwQW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+                                class="img-fluid mx-auto d-block cityimg img-thumbnail" alt="Los Angeles" />
+                              <p class="text-white mb-0 centered">Los Angeles</p>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
                   </div>
                 </div>
               </div>
             </section>
-            
-            <section id="daily-forecast" class="container-fluid row d-flex flex-row"
-              style="margin-left:3em; width:65vw">
-              <p><!-- Just for Alignment ... DONT DELETE ! --></p>
-              <div class="time-zone white-text h3" id="time-zone-header" style="margin-left: 1.75em;">Asia/Kolkata</div>
+
+            <section id="daily-forecast" class="container-fluid row d-flex flex-row" style="width:68vw">
+              <p>
+                <!-- Just for Alignment ... DONT DELETE ! -->
+              </p>
+              <div class="time-zone text-white h3" id="time-zone-header">Asia/Kolkata</div>
               <!-- Daily forecast -->
-              <div class="card-body p-4 border-top border-bottom mb-2  d-flex flex-row">
-                <div class="row text-center future-forecast">
-                  <div class="weather-forecast d-flex small" id="weather-forecast">
-                    <div class="weather-forecast-item"></div>
-                    <div class="weather-forecast-item"></div>
-                    <div class="weather-forecast-item"></div>
-                    <div class="weather-forecast-item"></div>
-                    <div class="weather-forecast-item"></div>
-                  </div>
+              <div class="card-body p-4 border-top border-bottom mb-2  d-flex flex-row justify-content-evenly">
+                <div class="weather-forecast d-flex small" id="weather-forecast">
+                  <div class="weather-forecast-item"></div>
+                  <div class="weather-forecast-item"></div>
+                  <div class="weather-forecast-item"></div>
+                  <div class="weather-forecast-item"></div>
+                  <div class="weather-forecast-item"></div>
                 </div>
               </div>
             </section>
 
 
-            <section id="stat" class="container-fluid row" style="margin-left:6em; width:55vw">
-              <h3 class="white-text"><br />Weather Graph<br /><br /></h3>
+            <section id="stat" class="container-fluid row" style="width:68vw">
+              <h3 class="text-white"><br />Weather Graph<br /><br /></h3>
               <canvas id="myChart" width="300" height="200"></canvas>
-      
             </section>
-            <section id="map" class="container-fluid row d-flex flex-row" style="margin-left:6em; width:55vw">
-              <p><!-- Just for Alignment ... DONT DELETE ! --><br/></p>
-              <div class="white-text h3" id="locationMap">Map</div>
-              <p><br/></p>
-              <div id="mapIframe"></div>
-              <p><br/></p>
+            <section id="map" class="container-fluid row d-flex flex-row">
+              <p>
+                <!-- Just for Alignment ... DONT DELETE ! --><br />
+              </p>
+              <div class="text-white h3" id="locationMap">Map</div>
+              <p><br /></p>
+              <div class="d-flex flex-column align-items-center" id="mapIframe"></div>
+              <p><br /></p>
             </section>
+            <section>
           </div>
         </div>
       </div>
@@ -315,10 +284,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
     integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <script src="./js/openWeatherAPI.js"></script>
   <script src="./js/weatherGraph.js"></script>
   <script src="./js/mapUpdate.js"></script>
+  <script src="./js/hoverCarousel.js"></script>
+
 </body>
 
 </html>

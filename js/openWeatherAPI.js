@@ -1,9 +1,7 @@
 const timeEl = document.getElementById('time');
 const dateEl = document.getElementById('date');
 const currentWeatherItemsEl = document.getElementById('current-weather-items');
-const timezone = document.getElementById('time-zone');
 const timezonehead = document.getElementById('time-zone-header');
-const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
 var searchCity = "";
@@ -81,7 +79,7 @@ function featuredCity(carouselCity) {
 }
 
 function showWeatherData (data){
-    let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
+    let {temp, humidity, pressure, sunrise, sunset, wind_speed} = data.current;
     main = data.current.weather[0].main;
     // Backgrounds
     switch (main) {
@@ -115,44 +113,47 @@ function showWeatherData (data){
           break;
       }
 
-
-
-    timezone.innerHTML = data.timezone;
-    timezonehead.innerHTML = data.timezone;
-    countryEl.innerHTML = data.lat + 'N ' + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + data.lon+'E'
+    timezonehead.innerHTML = data.timezone.split("/")[1];
+    var countryEl = data.lat + 'N ' + ", " + data.lon+'E)'
 
     currentWeatherItemsEl.innerHTML = 
-    `<div class="weather-item d-flex justify-content-between">
+    `
+    <div class="d-flex justify-content-around"><span class="h2 fw-bold">${temp>0?'+'+temp:temp}&#176C</span></div>
+    <div class="h4 d-flex justify-content-around">${data.timezone.split("/")[1]}</div>
+    <div class="h6 d-flex justify-content-around">${data.timezone.split("/")[0]} (${countryEl}</div>
+    <div class="weather-item d-flex justify-content-between">
         <div class="h6">Humidity</div>
         <div class="small">${humidity}%</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: ${humidity}%" aria-valuenow="${humidity}" aria-valuemin="0" aria-valuemax="100">
+      </div>
+    </div>
+    <br/>
+    <div class="weather-item d-flex justify-content-between">
+    <div class="h6">Wind Speed</div>
+    <div class="small">${wind_speed}</div>
     </div>
     <div class="weather-item d-flex justify-content-between">
         <div class="h6">Pressure</div>
         <div class="small">${pressure}</div>
     </div>
     <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Wind Speed</div>
-        <div class="small">${wind_speed}</div>
-    </div>
-    <div class="weather-item d-flex justify-content-between">
         <div class="h6">Sunrise</div>
         <div class="small">${window.moment(sunrise * 1000).format('HH:mm a')}</div>
-    </div>
-    <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Sunset</div>
         <div class="small">${window.moment(sunset*1000).format('HH:mm a')}</div>
+        <div class="h6">Sunset</div>
     </div>
-    
     
     `;
 
     let otherDayForcast = ''
     data.daily.forEach((day, idx) => {
             otherDayForcast += `
-            <div class="weather-forecast-item">
-                <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
-                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">${day.temp.min}&#176;C/${day.temp.max}&#176;C</div>
+            <div class="weather-forecast-item d-flex flex-column align-items-center">
+            <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+            <div class="temp">${day.temp.min}&#176;C/${day.temp.max}&#176;C</div>
+            <div class="day">${window.moment(day.dt*1000).format('DD ddd')}</div>
             </div>
             
             `
