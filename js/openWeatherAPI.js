@@ -1,9 +1,10 @@
 const timeEl = document.getElementById('time');
 const dateEl = document.getElementById('date');
+const nowEl = document.getElementById('weather-now');
 const currentWeatherItemsEl = document.getElementById('current-weather-items');
 const timezonehead = document.getElementById('time-zone-header');
 const weatherForecastEl = document.getElementById('weather-forecast');
-const currentTempEl = document.getElementById('current-temp');
+// const currentTempEl = document.getElementById('current-temp');
 var searchCity = "";
 var main = "";
 
@@ -38,6 +39,7 @@ function getWeatherData () {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
 
         console.log(data)
+        searchCity = data.timezone.split('/')[1];
         showWeatherData(data);
         getGraphData(data);
         mapUpdateIframe(data.timezone.split('/')[1]);
@@ -70,6 +72,7 @@ function featuredCity(carouselCity) {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
 
             console.log(data)
+            searchCity = carouselCity;
             showWeatherData(data);
             getGraphData(data);
             mapUpdateIframe(carouselCity);
@@ -91,6 +94,7 @@ function showWeatherData (data){
           document.getElementById("wrapper-bg").style.backgroundImage =
             "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
           break;
+        case "Mist":
         case "Fog":
           document.getElementById("wrapper-bg").style.backgroundImage =
             "url('img/gifs/fog.gif')";
@@ -113,14 +117,18 @@ function showWeatherData (data){
           break;
       }
 
-    timezonehead.innerHTML = data.timezone.split("/")[1];
-    var countryEl = data.lat + 'N ' + ", " + data.lon+'E)'
+    timezonehead.innerHTML = searchCity;
+    var coordsEl = data.lat + 'N ' + ", " + data.lon+'E'
 
     currentWeatherItemsEl.innerHTML = 
     `
     <div class="d-flex justify-content-around"><span class="h2 fw-bold">${temp>0?'+'+temp:temp}&#176C</span></div>
-    <div class="h4 d-flex justify-content-around">${data.timezone.split("/")[1]}</div>
-    <div class="h6 d-flex justify-content-around">${data.timezone.split("/")[0]} (${countryEl}</div>
+    <div class="h4 d-flex justify-content-around">${searchCity}</div>
+    <div class="small d-flex justify-content-around">(${coordsEl})</div>
+    <div class="weather-item d-flex justify-content-between">
+        <div class="h6">Time Zone</div>
+        <div class="small">${data.timezone} </div>
+    </div>
     <div class="weather-item d-flex justify-content-between">
         <div class="h6">Humidity</div>
         <div class="small">${humidity}%</div>
@@ -129,10 +137,10 @@ function showWeatherData (data){
       <div class="progress-bar" role="progressbar" style="width: ${humidity}%" aria-valuenow="${humidity}" aria-valuemin="0" aria-valuemax="100">
       </div>
     </div>
-    <br/>
+    <p></p>
     <div class="weather-item d-flex justify-content-between">
     <div class="h6">Wind Speed</div>
-    <div class="small">${wind_speed}</div>
+    <div class="small">${wind_speed} km/h</div>
     </div>
     <div class="weather-item d-flex justify-content-between">
         <div class="h6">Pressure</div>
@@ -151,7 +159,7 @@ function showWeatherData (data){
     data.daily.forEach((day, idx) => {
             otherDayForcast += `
             <div class="weather-forecast-item d-flex flex-column align-items-center">
-            <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+            <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
             <div class="temp">${day.temp.min}&#176;C/${day.temp.max}&#176;C</div>
             <div class="day">${window.moment(day.dt*1000).format('DD ddd')}</div>
             </div>
@@ -159,6 +167,12 @@ function showWeatherData (data){
             `
     })
 
-
     weatherForecastEl.innerHTML = otherDayForcast;
+    nowEl.innerHTML = 
+    `<img id="weather-now" src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" title="${capitalizeFirstLetter(data.current.weather[0].description)}" class="w-icon">
+    `
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
