@@ -151,3 +151,51 @@ a .active {
 #myChart {
   background-color: rgba(0, 0, 0, 0.658) !important;
 }
+
+#ddMode{
+  width: 10em;
+  margin-right: 0.5em;
+}
+
+#ddType{
+  width: 7em;
+}
+
+select {
+  color: rgb(255, 255, 255) !important;
+  background: #00000086 !important;
+  padding:5px;
+  margin: 0.5em;
+  border-radius: 3px;
+}
+
+#dropsDown{
+  background-color:rgba(0, 0, 0, 0.493);
+  display: block;
+  border-radius: 5px;
+  background:  #12362ba8; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #091d30d5,
+    #04a06fd7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #091d30d5,
+    #04a06fd7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Ch*/
+}
+
+#search-button {
+  background-color: rgba(14, 14, 15, 0.945) !important;
+  margin: 1px;
+}
+
+#search-button:hover{
+  background-color :rgba(0, 0, 0, 0.664) !important;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.w-icon{
+  filter: contrast(200%);
+}

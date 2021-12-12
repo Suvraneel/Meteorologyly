@@ -42,7 +42,6 @@ function getWeatherData () {
         searchCity = data.timezone.split('/')[1];
         showWeatherData(data);
         getGraphData(data);
-        mapUpdateIframe(data.timezone.split('/')[1]);
         })
     })
 }
@@ -58,7 +57,6 @@ function searchByCity() {
             console.log(data)
             showWeatherData(data);
             getGraphData(data);
-            mapUpdateIframe(searchCity);
         })
     })
 
@@ -75,13 +73,13 @@ function featuredCity(carouselCity) {
             searchCity = carouselCity;
             showWeatherData(data);
             getGraphData(data);
-            mapUpdateIframe(carouselCity);
         })
     })
 
 }
 
 function showWeatherData (data){
+    mapUpdateIframe(searchCity);
     let {temp, humidity, pressure, sunrise, sunset, wind_speed} = data.current;
     main = data.current.weather[0].main;
     // Backgrounds

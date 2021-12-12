@@ -16,6 +16,11 @@
   <script src="https://kit.fontawesome.com/4e544dfbd7.js" crossorigin="anonymous"></script>
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <!-- Bootstrap form plugin -->
+  <link
+  href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css"
+  rel="stylesheet"
+/>
   <!-- MDB -->
   <link rel="stylesheet" href="css/mdb.min.css" />
   <link rel="stylesheet" href="./css/media-queries.css">
@@ -108,7 +113,7 @@
                 <!-- Authentication to be implemented -->
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow form-outline">
-                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-mdb-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fa-solid fa-bell"></i>
                     &nbsp;&nbsp;&nbsp;
@@ -250,7 +255,21 @@
 
             <section id="stat" class="container-fluid row" style="width:68vw">
               <h3 class="text-white"><br />Weather Graph<br /><br /></h3>
+              <div class="container-fluid d-flex flex-column">
+                <div class="d-flex flex-row justify-content-end" id="dropsDown">
+                  <select id="ddMode" class="block mt-1 text-white" onchange="ddModeSelected(this)" autocomplete="off" aria-label="Mode">
+                    <option value="temp" selected>Temperature</option>
+                    <option value="humid">Humidity</option>
+                    <option value="press">Pressure</option>
+                    <option value="wind">Wind Speed</option>
+                  </select>
+                  <select id="ddType" class="block mt-1" onchange="ddTypeSelected(this)" autocomplete="off" aria-label="Type">
+                    <option value="line" selected>Line</option>
+                    <option value="bar">Bar</option>
+                  </select>
+                </div>
               <canvas id="myChart" width="300" height="200"></canvas>
+              </div>
             </section>
             <section id="map" class="container-fluid row d-flex flex-row">
               <p>
