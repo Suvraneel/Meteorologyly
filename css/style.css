@@ -1,79 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@200;300;400&display=swap");
 
-body{
+body {
   font-family: Raleway, Playfair Display, sans-serif;
 }
 
-#wrapper-bg{
+#wrapper-bg {
   position: relative;
-  left:3em;
+  left: 3em;
 }
 
 /* Styles required only for the example above */
 .scrollspy-example {
-    position: relative;
-    height: 200px;
-    overflow: auto;
-  }
-
-  .nav-link {
-    padding: 0;
-    font-size: 1rem;
-    line-height: 2.5rem;
-    color: inherit;
-    opacity: 0.8;
-  }
-  
-  .header-social .nav-link {
-    font-size: 1.25rem; }
-  
-  .nav-link:hover,
-  .nav-link:focus {
-    color: cyan;
-    opacity: 1; }
-
-  .nav-item + .nav-item {
-    margin-left: 1rem;
-  }
-
-  #scrollspy{
-    margin-top: 2em;
-  }
-
-  #scrollspy .active {
-      color: rgb(0, 247, 255) !important;
-      background-color: rgba(68, 218, 223, 0.200);
-      border-radius: 3px;
-      padding-left: 0.5em;
-  }
-
-a .active{
-    color:red;
+  position: relative;
+  height: 200px;
+  overflow: auto;
 }
 
-.active, .btn:hover {
+.nav-link {
+  padding: 0;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.header-social .nav-link {
+  font-size: 1.25rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: cyan;
+  opacity: 1;
+}
+
+.nav-item + .nav-item {
+  margin-left: 1rem;
+}
+
+#scrollspy {
+  margin-top: 2em;
+}
+
+#scrollspy .active {
+  color: rgb(0, 247, 255) !important;
+  background-color: rgba(68, 218, 223, 0.2);
+  border-radius: 3px;
+  padding-left: 0.5em;
+}
+
+a .active {
+  color: red;
+}
+
+.active,
+.btn:hover {
   color: rgb(4, 0, 255);
 }
 
 .card {
-    border: 0;
-    margin: 1em;
-    -webkit-box-shadow: 0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.05);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.05);
+  border: 0;
+  margin: 1em;
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.top-nav{
+.top-nav {
   position: relative;
   top: 2em;
   width: 65vw;
 }
 
 .citycard {
-    border: 0;
-    height: 18vh;
-    width: 11vw;
-    -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0),0 4px 6px -2px rgba(0,0,0,.05);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.05);
+  border: 0;
+  height: 18vh;
+  width: 11vw;
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .cityimg {
@@ -83,7 +90,7 @@ a .active{
   background-size: cover;
 }
 
-.carousel-item img{
+.carousel-item img {
   filter: brightness(80%);
 }
 
@@ -97,19 +104,30 @@ a .active{
   font-size: 1.5em;
 }
 
-.weather-forecast-item{
+.weather-forecast-item {
   align-content: center;
   border-radius: 2px;
   margin: 1px;
-  padding:2px;
+  padding: 2px;
   width: 8.6em;
   border-style: double;
-  border-color:rgba(255, 255, 255, 0.301);
+  border-color: rgba(255, 255, 255, 0.301);
   background-color: rgba(27, 25, 25, 0.575);
 }
 
-#today-card{
-  background-color:#0e6b6e6e;
+#today-card {
+  background:  #43cea2a8; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #185b9d34,
+    #43cea2a8
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #185b9d34,
+    #43cea2a8
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   border-radius: 4px;
   border-style: double;
   margin: auto;
@@ -117,18 +135,19 @@ a .active{
   width: 170%;
 }
 
-.form-outline{
+.form-outline {
   background-color: rgba(0, 0, 0, 0.534);
-  border-color:rgba(255, 255, 255, 0.39);
+  border-color: rgba(255, 255, 255, 0.39);
   border-style: ridge;
-  padding:1px 5px;
-  border-radius:5px;
+  padding: 1px 5px;
+  border-radius: 5px;
 }
 
-.form-outline .active, .btn:hover {
-	color: rgb(0, 247, 255);
+.form-outline .active,
+.btn:hover {
+  color: rgb(0, 247, 255);
 }
 
-#myChart{
-  background-color : rgba(0, 0, 0, 0.658) !important;
+#myChart {
+  background-color: rgba(0, 0, 0, 0.658) !important;
 }

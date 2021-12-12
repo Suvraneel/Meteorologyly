@@ -62,7 +62,7 @@
   border-radius: 8px;
   pointer-events: none;
   transition: 0.2s ease-out;
-  background: linear-gradient(to right, white 20%, transparent);
+  background: linear-gradient(to right, #18e9c6 20%, transparent);
 }
 .carousel > .wrap::after {
   transform: rotate(180deg);
