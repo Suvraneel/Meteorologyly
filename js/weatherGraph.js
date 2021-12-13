@@ -13,7 +13,7 @@ function ddModeSelected(ddMode) {
 
 
 function ddTypeSelected(ddType) {
-    console.log(ddMode.options[ddType.selectedIndex].innerHTML);
+    console.log(ddType.options[ddType.selectedIndex].innerHTML);
     chartType = ddType.value;
     getGraphData(existingChartData);
 }
@@ -40,6 +40,7 @@ function getGraphData(data) {
         chartDataWindSp.push(day.wind_speed);
         chartDataWindGust.push(day.wind_gust);
     })
+    var chartLabels = data.daily.map(day => window.moment(day.dt * 1000).format('ddd DD'));
     if (chartExist) {
         myChart.destroy();
     }
@@ -51,7 +52,7 @@ function getGraphData(data) {
             type: chartType,
             borderColor: 'rgb(75, 192, 192)',
             data: {
-                labels: days,
+                labels: chartLabels,
                 datasets: [{
                         label: 'Temp - Max',
                         data: chartDataMax,
@@ -156,7 +157,7 @@ function getGraphData(data) {
             type: chartType,
             borderColor: 'rgb(75, 192, 192)',
             data: {
-                labels: days,
+                labels: chartLabels,
                 datasets: [
                     {
                         label: 'Humidity',
@@ -212,7 +213,7 @@ function getGraphData(data) {
             type: chartType,
             borderColor: 'rgb(75, 192, 192)',
             data: {
-                labels: days,
+                labels: chartLabels,
                 datasets: [
                     {
                         label: 'Pressure',
@@ -269,7 +270,7 @@ function getGraphData(data) {
             type: chartType,
             borderColor: 'rgb(75, 192, 192)',
             data: {
-                labels: days,
+                labels: chartLabels,
                 datasets: [
                     {
                         label: 'Wind Speed',
