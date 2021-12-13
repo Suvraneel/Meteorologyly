@@ -46,6 +46,14 @@ function getWeatherData () {
     })
 }
 
+var input = document.getElementById("search-input");
+  input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+  event.preventDefault();
+  searchByCity();
+  }
+});
+
 function searchByCity() {
     searchCity = document.getElementById('search-input').value;
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}`).then(res => res.json()).then(data => {
@@ -167,7 +175,7 @@ function showWeatherData (data){
 
     weatherForecastEl.innerHTML = otherDayForcast;
     nowEl.innerHTML = 
-    `<img id="weather-now" src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" title="${capitalizeFirstLetter(data.current.weather[0].description)}" class="w-icon">
+    `<img id="weather-now" src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" title="${capitalizeFirstLetter(data.current.weather[0].description)}" class="w-icon">
     `
 }
 
