@@ -1,23 +1,13 @@
-const timeEl = document.getElementById('time');
-const dateEl = document.getElementById('date');
-const nowEl = document.getElementById('weather-now');
-const currentWeatherItemsEl = document.getElementById('current-weather-items');
-const timezonehead = document.getElementById('time-zone-header');
-const weatherForecastEl = document.getElementById('weather-forecast');
-// const currentTempEl = document.getElementById('current-temp');
 var searchCity = "";
-var main = "";
-
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var searchCountry = "";
 
 // OpenWeather's One Call 2.5 API was retired, so weather data now comes from
 // Open-Meteo (https://open-meteo.com), which is free and needs no API key.
-// fetchWeather() converts its response into the same shape the old One Call
-// API returned, so the rendering and chart code below is unchanged.
+// fetchWeather() converts its response into a simple shape (modelled on the
+// old One Call response) that the rendering and chart code work from.
 const DEFAULT_CITY = 'Kolkata';
 
-// WMO weather code -> [main, description, OpenWeather icon code]
+// WMO weather code -> { main, description, OpenWeather-style icon code, Phosphor icon name }
 function wmoToWeather(code, isDay) {
     let w;
     if (code === 0) w = ['Clear', 'clear sky', '01'];
@@ -32,7 +22,10 @@ function wmoToWeather(code, isDay) {
     else if (code === 85 || code === 86) w = ['Snow', 'snow showers', '13'];
     else if (code >= 95) w = ['Thunderstorm', 'thunderstorm', '11'];
     else w = ['Clouds', 'cloudy', '03'];
-    return { main: w[0], description: w[1], icon: w[2] + (isDay === 0 ? 'n' : 'd') };
+    const night = isDay === 0;
+    const ph = { '01': night ? 'moon' : 'sun', '02': night ? 'cloud-moon' : 'cloud-sun', '03': 'cloud', '04': 'cloud',
+        '09': 'cloud-rain', '10': 'cloud-rain', '11': 'cloud-lightning', '13': 'cloud-snow', '50': 'cloud-fog' }[w[2]];
+    return { main: w[0], description: w[1], icon: w[2] + (night ? 'n' : 'd'), ph: ph };
 }
 
 function fetchWeather(latitude, longitude) {
@@ -109,167 +102,150 @@ function geocodeCity(city) {
         });
 }
 
-function loadCity(city) {
-    return geocodeCity(city)
-        .then(place => fetchWeather(place.latitude, place.longitude))
-        .then(data => {
-            searchCity = city;
-            showWeatherData(data);
-            getGraphData(data);
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Could not load weather for "' + city + '". Check the spelling and try again.');
-        });
+function render(data) {
+    showWeatherData(data);
+    getGraphData(data);
 }
 
-setInterval(() => {
-    const time = new Date();
-    const month = time.getMonth();
-    const date = time.getDate();
-    const day = time.getDay();
-    const hour = time.getHours();
-    const hoursIn12HrFormat = hour >= 13 ? hour %12: hour
-    const minutes = time.getMinutes();
-    const ampm = hour >=12 ? 'PM' : 'AM'
-
-    timeEl.innerHTML = (hoursIn12HrFormat < 10? '0'+hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${ampm}</span>`
-
-    dateEl.innerHTML = days[day] + ', ' + date+ ' ' + months[month]
-
-}, 1000);
+function loadCity(city) {
+    setLoading(true);
+    return geocodeCity(city)
+        .then(place => fetchWeather(place.latitude, place.longitude).then(data => {
+            searchCity = place.name;
+            searchCountry = place.country || '';
+            render(data);
+        }))
+        .catch(err => {
+            console.error(err);
+            showToast(`Couldn't find weather for "${city}". Check the spelling and try again.`);
+        })
+        .finally(() => setLoading(false));
+}
 
 getWeatherData()
-function getWeatherData () {
+function getWeatherData() {
     if (!navigator.geolocation) {
         loadCity(DEFAULT_CITY);
         return;
     }
+    setLoading(true);
     navigator.geolocation.getCurrentPosition((success) => {
-
-        let {latitude, longitude } = success.coords;
-
+        let { latitude, longitude } = success.coords;
         fetchWeather(latitude, longitude).then(data => {
             searchCity = data.timezone.split('/').pop().replace(/_/g, ' ');
-            showWeatherData(data);
-            getGraphData(data);
+            searchCountry = '';
+            render(data);
+            setLoading(false);
         }).catch(err => {
             console.error(err);
             loadCity(DEFAULT_CITY);
-        })
-    }, () => loadCity(DEFAULT_CITY)) // location denied/unavailable -> fall back to a default city
+        });
+    }, () => loadCity(DEFAULT_CITY)); // location denied/unavailable -> fall back to a default city
 }
 
-var input = document.getElementById("search-input");
-  input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-  event.preventDefault();
-  searchByCity();
-  }
-});
-
 function searchByCity() {
-    const city = document.getElementById('search-input').value.trim();
-    if (city) loadCity(city);
+    const input = document.getElementById('search-input');
+    const city = input.value.trim();
+    if (city) {
+        loadCity(city);
+        input.blur();
+    }
 }
 
 function featuredCity(carouselCity) {
     loadCity(carouselCity);
 }
 
-function showWeatherData (data){
-    mapUpdateIframe(searchCity, data.lat, data.lon);
-    let {temp, humidity, pressure, sunrise, sunset, wind_speed} = data.current;
-    main = data.current.weather[0].main;
-    // Backgrounds
-    switch (main) {
-        case "Snow":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('img/gifs/snow.gif')";
-          break;
-        case "Clouds":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
-          break;
-        case "Mist":
-        case "Fog":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('img/gifs/fog.gif')";
-          break;
-        case "Rain":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('img/gifs/rain.gif')";
-          break;
-        case "Clear":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('img/gifs/clear.gif')";
-          break;
-        case "Thunderstorm":
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('https://mdbgo.io/ascensus/mdb-advanced/img/thunderstorm.gif')";
-          break;
-        default:
-          document.getElementById("wrapper-bg").style.backgroundImage =
-            "url('https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif')";
-          break;
-      }
+// ---------- Rendering ----------
 
-    timezonehead.innerHTML = searchCity;
-    var coordsEl = data.lat + 'N ' + ", " + data.lon+'E'
+function formatInZone(unixSeconds, options) {
+    try {
+        return new Intl.DateTimeFormat('en-GB', { ...options, timeZone: cityTimezone || undefined })
+            .format(new Date(unixSeconds * 1000));
+    } catch (e) {
+        return new Intl.DateTimeFormat('en-GB', options).format(new Date(unixSeconds * 1000));
+    }
+}
 
-    currentWeatherItemsEl.innerHTML = 
-    `
-    <div class="d-flex justify-content-around"><span class="h2 fw-bold">${temp>0?'+'+temp:temp}&#176C</span></div>
-    <div class="h4 d-flex justify-content-around">${searchCity}</div>
-    <div class="small d-flex justify-content-around">(${coordsEl})</div>
-    <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Time Zone</div>
-        <div class="small">${data.timezone} </div>
-    </div>
-    <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Humidity</div>
-        <div class="small">${humidity}%</div>
-    </div>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: ${humidity}%" aria-valuenow="${humidity}" aria-valuemin="0" aria-valuemax="100">
-      </div>
-    </div>
-    <p></p>
-    <div class="weather-item d-flex justify-content-between">
-    <div class="h6">Wind Speed</div>
-    <div class="small">${wind_speed} km/h</div>
-    </div>
-    <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Pressure</div>
-        <div class="small">${pressure}</div>
-    </div>
-    <div class="weather-item d-flex justify-content-between">
-        <div class="h6">Sunrise</div>
-        <div class="small">${window.moment(sunrise * 1000).format('HH:mm a')}</div>
-        <div class="small">${window.moment(sunset*1000).format('HH:mm a')}</div>
-        <div class="h6">Sunset</div>
-    </div>
-    
-    `;
-
-    let otherDayForcast = ''
-    data.daily.forEach((day, idx) => {
-            otherDayForcast += `
-            <div class="weather-forecast-item d-flex flex-column align-items-center">
-            <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">${day.temp.min}&#176;C/${day.temp.max}&#176;C</div>
-            <div class="day">${window.moment(day.dt*1000).format('DD ddd')}</div>
-            </div>
-            
-            `
-    })
-
-    weatherForecastEl.innerHTML = otherDayForcast;
-    nowEl.innerHTML = 
-    `<img id="weather-now" src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" title="${capitalizeFirstLetter(data.current.weather[0].description)}" class="w-icon">
-    `
+function formatCoords(lat, lon) {
+    const f = (v, pos, neg) => Math.abs(v).toFixed(2) + '°' + (v >= 0 ? pos : neg);
+    return f(lat, 'N', 'S') + ' ' + f(lon, 'E', 'W');
 }
 
 function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function showWeatherData(data) {
+    const $ = id => document.getElementById(id);
+    const c = data.current;
+    const w = c.weather[0];
+    const today = data.daily[0];
+
+    cityTimezone = data.timezone;
+    setSky(w.main, w.icon.endsWith('n'));
+    updateClock();
+
+    $('city-name').textContent = searchCity;
+    $('country').textContent = searchCountry;
+    $('coords').textContent = formatCoords(data.lat, data.lon);
+    $('temp-now').textContent = Math.round(c.temp) + '°';
+    $('icon-now').className = 'ph-light ph-' + w.ph + ' hero-icon';
+    $('condition').textContent = capitalizeFirstLetter(w.description);
+    $('hi').textContent = Math.round(today.temp.max) + '°';
+    $('lo').textContent = Math.round(today.temp.min) + '°';
+
+    $('humidity').textContent = c.humidity + '%';
+    $('humidity-meter').style.transform = `scaleX(${c.humidity / 100})`;
+    $('wind').textContent = Math.round(c.wind_speed) + ' km/h';
+    $('pressure').textContent = c.pressure + ' hPa';
+
+    renderSun(today.sunrise, today.sunset);
+    renderForecast(data.daily);
+
+    $('map-title').textContent = searchCity;
+    mapUpdateIframe(searchCity, data.lat, data.lon);
+}
+
+function renderSun(sunrise, sunset) {
+    const timeOpts = { hour: 'numeric', minute: '2-digit' };
+    document.getElementById('sunrise').textContent = formatInZone(sunrise, timeOpts);
+    document.getElementById('sunset').textContent = formatInZone(sunset, timeOpts);
+    const mins = Math.round((sunset - sunrise) / 60);
+    document.getElementById('daylength').textContent = `${Math.floor(mins / 60)}h ${mins % 60}m`;
+
+    // Position the sun along the arc (centre 100,100, radius 90)
+    const now = Date.now() / 1000;
+    const raw = (now - sunrise) / (sunset - sunrise);
+    const p = Math.min(Math.max(raw, 0), 1);
+    const angle = Math.PI * (1 - p);
+    const x = (100 + 90 * Math.cos(angle)).toFixed(2);
+    const y = (100 - 90 * Math.sin(angle)).toFixed(2);
+    const dot = document.getElementById('sun-dot');
+    dot.setAttribute('cx', x);
+    dot.setAttribute('cy', y);
+    dot.style.opacity = raw >= 0 && raw <= 1 ? 1 : 0.35;
+    document.getElementById('sun-progress').setAttribute('d', p > 0 ? `M10 100 A90 90 0 0 1 ${x} ${y}` : 'M10 100');
+}
+
+function renderForecast(daily) {
+    const lows = daily.map(d => d.temp.min);
+    const highs = daily.map(d => d.temp.max);
+    const lo = Math.min(...lows);
+    const span = (Math.max(...highs) - lo) || 1;
+
+    document.getElementById('weather-forecast').innerHTML = daily.map((d, i) => {
+        const from = ((d.temp.min - lo) / span * 100).toFixed(1);
+        const to = ((d.temp.max - lo) / span * 100).toFixed(1);
+        const name = i === 0 ? 'Today' : formatInZone(d.dt, { weekday: 'short' });
+        const desc = capitalizeFirstLetter(d.weather[0].description);
+        return `
+        <li class="day">
+            <span class="day-name">${name}</span>
+            <i class="ph-light ph-${d.weather[0].ph}" title="${desc}" aria-label="${desc}"></i>
+            <span class="t-lo">${Math.round(d.temp.min)}°</span>
+            <span class="range"><span class="range-fill" style="--from:${from}%;--to:${to}%"></span></span>
+            <span class="t-hi">${Math.round(d.temp.max)}°</span>
+        </li>`;
+    }).join('');
 }
